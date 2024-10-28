@@ -4,12 +4,12 @@ Akmal
 - Tower
     - Drag & drop
     - Tower placement based on map
-    - Tower attributes
+    - Tower attributes (Health work with Kai Xiang)
     - Virtual Currency (Work with Khai Xuen)
 
 Khai Xuen
 - Enemy
-    - Enemy attributes
+    - Enemy attributes (Health work with Kai Xiang)
     - Integrate with pathfinding (Work with Kai Xiang)
     - Enemy animations (Interpolation)
     - Waves implementation
@@ -18,7 +18,7 @@ Khai Xuen
 Kai Xiang
 - UI
   - Camera
-  - Health bar, UI for virtual currency
+  - Health bar (Health work with Khai Xuen, Akmal), UI for virtual currency
   - Main Menu
   - Pathfinding (Work with Khai Xuen)
   - UI animations (Interpolation)
@@ -34,8 +34,8 @@ Kai Xiang
 - int enemySpd;
   
 ### UI (Kai Xiang)
-- int playerHealth;
-- int coins;
+- int playerHealth = 100;
+- int coins = 0;
 
 ## Universal
 - vector3 pStart;
