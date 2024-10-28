@@ -11,7 +11,7 @@ Khai Xuen
     - Integrate with pathfinding
     - Enemy animations (Interpolation)
 
-
+Kai Xiang
 - UI
   - Camera
   - Health bar, virtual currency
