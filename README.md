@@ -38,6 +38,4 @@ Kai Xiang
 - int coins = 0;
 
 ## Universal
-- vector3 pStart;
-- vector3 pEnd;
-- vector3 pCtrl{number};
+- vector3 p0 - p(n);
