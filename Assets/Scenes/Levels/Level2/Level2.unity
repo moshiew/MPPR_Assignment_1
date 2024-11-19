@@ -490,7 +490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 844414735}
   - component: {fileID: 844414734}
-  - component: {fileID: 844414733}
+  - component: {fileID: 844414736}
   m_Layer: 0
   m_Name: QuadraticBezierPoints
   m_TagString: Untagged
@@ -498,27 +498,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &844414733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844414732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adc6ecc4baa64cc4e82717f7ca63097b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 1927325986}
-  - {fileID: 1846278211}
-  - {fileID: 134208726}
-  - {fileID: 1683260446}
-  - {fileID: 1676665610}
-  - {fileID: 1880306130}
-  - {fileID: 279866591}
-  segmentResolution: 50
 --- !u!120 &844414734
 LineRenderer:
   serializedVersion: 2
@@ -944,6 +923,29 @@ Transform:
   - {fileID: 279866591}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &844414736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844414732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d63be7094d0654ea5e02484ea371f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bezierCurve:
+    waypoints:
+    - {fileID: 1927325986}
+    - {fileID: 1846278211}
+    - {fileID: 134208726}
+    - {fileID: 1683260446}
+    - {fileID: 1676665610}
+    - {fileID: 1880306130}
+    - {fileID: 279866591}
+    segmentResolution: 50
+  showPath: 1
 --- !u!1 &960151833
 GameObject:
   m_ObjectHideFlags: 0

@@ -575,7 +575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827621745662545929, guid: 566b98ea535e91a44b557dba92ecd85c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.9
+      value: -17.5
       objectReference: {fileID: 0}
     - target: {fileID: 6827621745662545929, guid: 566b98ea535e91a44b557dba92ecd85c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -867,7 +867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827621745662545929, guid: 566b98ea535e91a44b557dba92ecd85c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.62
+      value: -19.61
       objectReference: {fileID: 0}
     - target: {fileID: 6827621745662545929, guid: 566b98ea535e91a44b557dba92ecd85c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -917,7 +917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1504108711}
   - component: {fileID: 1504108710}
-  - component: {fileID: 1504108709}
+  - component: {fileID: 1504108712}
   m_Layer: 0
   m_Name: QuadraticBezierPoints
   m_TagString: Untagged
@@ -925,27 +925,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1504108709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504108708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adc6ecc4baa64cc4e82717f7ca63097b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 1487310098}
-  - {fileID: 1170817074}
-  - {fileID: 721692206}
-  - {fileID: 1659274404}
-  - {fileID: 1741637554}
-  - {fileID: 1816219790}
-  - {fileID: 875381994}
-  segmentResolution: 50
 --- !u!120 &1504108710
 LineRenderer:
   serializedVersion: 2
@@ -1292,7 +1271,7 @@ LineRenderer:
   - {x: -6.88, y: 1, z: -19.62}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.2
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1371,6 +1350,29 @@ Transform:
   - {fileID: 875381994}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1504108712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504108708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d63be7094d0654ea5e02484ea371f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bezierCurve:
+    waypoints:
+    - {fileID: 1487310098}
+    - {fileID: 1170817074}
+    - {fileID: 721692206}
+    - {fileID: 1659274404}
+    - {fileID: 1741637554}
+    - {fileID: 1816219790}
+    - {fileID: 875381994}
+    segmentResolution: 50
+  showPath: 1
 --- !u!1001 &1575757425
 PrefabInstance:
   m_ObjectHideFlags: 0
