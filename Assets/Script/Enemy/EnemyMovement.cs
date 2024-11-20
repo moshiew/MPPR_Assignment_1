@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
     private float tParam = 0;           // Parameter 't' used to interpolate along the Bezier curve (0 to 1)
 
     private BezierCurve bezierCurve = new BezierCurve();  // Helper class to calculate Bezier curve points and control points
+    private EnemyPathwayRenderer enemyPathwayRenderer = new EnemyPathwayRenderer();
 
     private void Start()
     {
@@ -79,10 +80,10 @@ public class EnemyMovement : MonoBehaviour
         float pathLength = 0f;
         Vector3 previousPoint = p0;
 
-        for (int i = 1; i <= bezierCurve.segmentResolution; i++)
+        for (int i = 1; i <= enemyPathwayRenderer.segmentResolution; i++)
         {
             // splitting the t value to a smaller points using segmentResolution
-            float t = i / (float)bezierCurve.segmentResolution;
+            float t = i / (float)enemyPathwayRenderer.segmentResolution;
             Vector3 currentPoint = bezierCurve.CalculateBezierPoint(t, p0, p1, p2);
 
             pathLength += Vector3.Distance(previousPoint, currentPoint); // use Vector3.Distance to calculate the distance and sum up.

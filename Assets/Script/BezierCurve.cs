@@ -4,9 +4,6 @@ using UnityEngine;
 [System.Serializable]
 public class BezierCurve
 {
-    public List<Transform> waypoints; // Nummber of waypoints
-    public int segmentResolution = 50; // Number of points for each curve
-
     /// <summary>
     /// Calculate the smooth control point for Bezier curve based on neighboring waypoints.
     /// </summary>
