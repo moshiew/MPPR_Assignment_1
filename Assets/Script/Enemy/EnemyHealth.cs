@@ -1,20 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public Slider slider;
-    public int health;
+    [SerializeField]
+    private EnemyHealthBar healthBar;
 
-    /// <summary>
-    /// Initializing the enemy health
-    /// </summary>
-    /// <param name="health">Health of the enemy</param>
-    public void setMaxHealth(int health)
+    public int maxHealth = 30;
+    public int currentHealth;
+
+    private void Start()
     {
-        slider.value = health;
-        slider.maxValue = health;
+        currentHealth = maxHealth;
+        healthBar.setMaxHealth(currentHealth);  
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space)) 
+        {
+            currentHealth -= 5;
+            healthBar.setHealth(currentHealth);
+        }
     }
 }
