@@ -5,17 +5,20 @@ using UnityEngine.UI;
 
 public class EnemyHealthBar : MonoBehaviour
 {
-    [SerializeField] private Slider slider;
-    [SerializeField] private Image fill;
+    private Slider slider;
+    private Image fill;
     [SerializeField] private Gradient gradient;
 
-    [SerializeField] private Camera cam;
-    [SerializeField] private Transform enemy;
+    private Camera cam;
+    private Transform enemy;
     [SerializeField] private Vector3 offset;
 
     private void Start()
     {
         slider = GetComponent<Slider>();
+        fill = GetComponentInChildren<Image>();
+        cam = Camera.main;
+        enemy = transform.root;
     }
 
     private void Update()

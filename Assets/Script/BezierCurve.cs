@@ -19,7 +19,7 @@ public class BezierCurve
     }
 
     /// <summary>
-    /// Calculate a point on a quadratic Bézier curve based on t (progress from 0 to 1).
+    /// Calculate a point on a quadratic Bezier curve based on t (progress from 0 to 1).
     /// </summary>
     public Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
     {

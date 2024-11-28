@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField]
-    private EnemyHealthBar healthBar;
+    [SerializeField] private EnemyHealthBar healthBar;
 
     public int maxHealth = 30;
     public int currentHealth;
 
     private void Start()
     {
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
         currentHealth = maxHealth;
-        healthBar.setMaxHealth(currentHealth);  
+        healthBar.setMaxHealth(currentHealth);
     }
 
     private void Update()
@@ -22,6 +22,15 @@ public class EnemyHealth : MonoBehaviour
         {
             currentHealth -= 5;
             healthBar.setHealth(currentHealth);
+        }
+        HealthCheck();
+    }
+
+    private void HealthCheck()
+    {
+        if(currentHealth == 0)
+        {
+            Destroy(transform.root.gameObject);
         }
     }
 }
