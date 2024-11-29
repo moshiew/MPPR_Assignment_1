@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class EasingMovement : MonoBehaviour
+public class BulletMovementScript : MonoBehaviour
 {
     public Transform startPoint;
     public Transform endPoint;
@@ -22,12 +22,7 @@ public class EasingMovement : MonoBehaviour
 
     // Start is called before the first frame update
 
-    float EaseInQuad(float x)
-    { return x*x; }
-
-    float EaseOutQuad(float x)
-    { return 1 - (1-x) * (1-x); }
-
+    
     float EaseInCubic(float x)
     { return x * x *x; }
 
@@ -56,7 +51,7 @@ public class EasingMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //If there is a position set for the bullet then the bullet will shoot based on the easetype of the bullet
         if (elaspedTime < duration && positionB != null)
         {
             elaspedTime += Time.deltaTime;
@@ -77,7 +72,7 @@ public class EasingMovement : MonoBehaviour
                     t=EaseInOutCubic(t);
                     break;
             }
-
+            //This is the interpolation from Position A to Position B
             Vector3 interpolatedPosition = (1 - t) * positionA + t * positionB;
 
             transform.position = interpolatedPosition;
@@ -90,6 +85,7 @@ public class EasingMovement : MonoBehaviour
         }
         else
         {
+            //When the the bullet reach the destination and the enemy exists then the enemy will take damage and destroy the bullet afterwards
             if (currentenemy != null)
             {
                 TempEnemy tempEnemy = currentenemy.GetComponent<TempEnemy>();

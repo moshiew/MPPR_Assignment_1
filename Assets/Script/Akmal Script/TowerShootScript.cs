@@ -16,19 +16,14 @@ public class TowerShootScript : MonoBehaviour
     public LayerMask obstacleLayer;
    
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
 
         if (enemy == null)
         {
-            enemy = FindClosestEnemy();
+            enemy = FindClosestEnemy(); // When no enemy is detected, try to find closest enemy
             
         }
         else
@@ -36,7 +31,7 @@ public class TowerShootScript : MonoBehaviour
             if (elapsedTime >= timeIntervals && isEnemyWithinRange(enemy.transform))
             {
                
-
+                //When enemy is found and enemy is within the player range and after passing getting to the time interval, set the positions for the bullet after spawn.
                 towerPosition = gameObject.transform;
                 enemyPosition = enemy.transform;
 
@@ -45,10 +40,10 @@ public class TowerShootScript : MonoBehaviour
                 GameObject bullet = Instantiate(towerBulletPrefab, towerPosition.position, towerPosition.rotation);
 
                 // Pass the current enemy reference to the bullet's EasingMovement script
-                EasingMovement easingMovement = bullet.GetComponent<EasingMovement>();
-                if (easingMovement != null)
+                BulletMovementScript movement = bullet.GetComponent<BulletMovementScript>();
+                if (movement != null)
                 {
-                    easingMovement.currentenemy = enemy; // Pass the enemy GameObject
+                    movement.currentenemy = enemy; // Pass the enemy GameObject
                     
 
                 }
@@ -66,7 +61,8 @@ public class TowerShootScript : MonoBehaviour
     }
     GameObject FindClosestEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //Function to find the closest enemy
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Use array to get all the enemy in the game scene
         
         GameObject currentEnemy = null;
 
@@ -74,6 +70,7 @@ public class TowerShootScript : MonoBehaviour
 
         foreach (GameObject enemy in enemies)
         {
+            //After checking all the enemy, try to find the enemy closest to the tower
             float distanceToEnemy = Vector3.Distance(this.transform.position, enemy.transform.position);
             
             if (distanceToEnemy < shortestDistance && isEnemyWithinRange(enemy.transform))
@@ -83,13 +80,14 @@ public class TowerShootScript : MonoBehaviour
                 currentEnemy = enemy;
             }
         }
-
+        //The closest enemy will be the current enemy
         return currentEnemy;
         
     }
 
     bool isEnemyWithinRange(Transform target)
     {
+        // This is to find the closest enemy/target using raycast to detect
         Vector3 directionToTarget = (target.position - this.transform.position).normalized;
         
         // Perform a raycast to check for obstacles
