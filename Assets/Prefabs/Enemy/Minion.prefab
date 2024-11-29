@@ -205,8 +205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe939e375f77534cb222478a89f26ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
-  fill: {fileID: 0}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
@@ -237,8 +235,6 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  cam: {fileID: 0}
-  enemy: {fileID: 0}
   offset: {x: 1, y: 1, z: 0}
 --- !u!114 &1586301258598079029
 MonoBehaviour:
@@ -270,7 +266,7 @@ GameObject:
   - component: {fileID: 2935905070127661346}
   m_Layer: 0
   m_Name: Minion
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

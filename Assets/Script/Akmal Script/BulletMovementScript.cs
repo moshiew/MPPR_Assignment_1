@@ -51,9 +51,10 @@ public class BulletMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If there is a position set for the bullet then the bullet will shoot based on the easetype of the bullet
-        if (elaspedTime < duration && positionB != null)
+        //If there is a position set for the bullet then the bullet will shoot based on the ease type of the bullet
+        if (elaspedTime < duration && positionB != null && currentenemy!= null)
         {
+            positionB = currentenemy.transform.position;
             elaspedTime += Time.deltaTime;
             float t = elaspedTime / duration;
             t = Mathf.Clamp01(t);
@@ -88,10 +89,10 @@ public class BulletMovementScript : MonoBehaviour
             //When the the bullet reach the destination and the enemy exists then the enemy will take damage and destroy the bullet afterwards
             if (currentenemy != null)
             {
-                TempEnemy tempEnemy = currentenemy.GetComponent<TempEnemy>();
-                if (tempEnemy != null)
+                EnemyHealth enemyHealth = currentenemy.GetComponentInChildren<EnemyHealth>();
+                if (enemyHealth != null)
                 {
-                    tempEnemy.TakeDamage(dmgPoints); // Deal damage to the correct enemy
+                    enemyHealth.TakeDamage(dmgPoints); // Deal damage to the correct enemy
                    
                 }
             }
