@@ -7,6 +7,7 @@ public class Interpolation : MonoBehaviour
     public Transform pointA;
     public Transform pointB;
     public float duration = 2.0f;
+    public BezierCurve bezierCurve;
 
     private float elapsedTime = 0.0f;
     private Vector3 positionA;
@@ -22,24 +23,30 @@ public class Interpolation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Check if interpolation is still within the duration
         if (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / duration;
+            //Clamp t to stay between 0 and 1
             t = Mathf.Clamp01(t);
 
-            // Ease In-Out Cubic
+            // Ease In-Out Cubic interpolation
             if (t < 0.5f)
             {
-                t = 4 * t * t * t; // Ease In
+               // Ease In
+               bezierCurve.EaseIn(t);
             }
             else
             {
-                t = 1 - Mathf.Pow(-2 * t + 2, 3) / 2; // Ease Out
+                // Ease Out
+                bezierCurve.EaseOut(t);
             }
 
+            //Calculate interpolated position using linear interpolation
             Vector3 interpolatedPosition = (1 - t) * positionA + t * positionB;
 
+            //Update position of GameObject
             transform.position = interpolatedPosition;
         }
         else
