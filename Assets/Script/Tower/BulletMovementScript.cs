@@ -88,11 +88,10 @@ public class BulletMovementScript : MonoBehaviour
             //When the the bullet reach the destination and the enemy exists then the enemy will take damage and destroy the bullet afterwards
             if (currentenemy != null)
             {
-                TempEnemy tempEnemy = currentenemy.GetComponent<TempEnemy>();
-                if (tempEnemy != null)
+                EnemyHealth enemyHealth = currentenemy.GetComponentInChildren<EnemyHealth>();
+                if (enemyHealth != null)
                 {
-                    tempEnemy.TakeDamage(dmgPoints); // Deal damage to the correct enemy
-                   
+                    enemyHealth.TakeDamage(dmgPoints); // Deal damage to the correct enemy
                 }
             }
 

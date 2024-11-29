@@ -35,4 +35,10 @@ public class EnemyHealth : MonoBehaviour
             Destroy(transform.root.gameObject); // Destroy the root object of the enemy.
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.setHealth(currentHealth);
+    }
 }

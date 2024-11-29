@@ -9,7 +9,6 @@ public class TempEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         enemyHealth = 20;
     }
 
