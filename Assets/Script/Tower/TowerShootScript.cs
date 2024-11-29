@@ -21,7 +21,7 @@ public class TowerShootScript : MonoBehaviour
     void Update()
     {
 
-        if (enemy == null)
+        if (enemy == null || !isEnemyWithinRange(enemy.transform))
         {
             enemy = FindClosestEnemy(); // When no enemy is detected, try to find closest enemy
             
