@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class EnemyPathwayRenderer : MonoBehaviour
 {
-    public List<Transform> waypoints; // Nummber of waypoints
+    public List<Transform> waypoints; // List of waypoints
     public int segmentResolution = 50; // Number of points for each curve
 
-    public BezierCurve bezierCurve; // Reference to the EnemyPathwayBezierCurve for path points
+    public BezierCurve bezierCurve;
     public bool showPath = true;
     private LineRenderer lineRenderer;
 

@@ -685,8 +685,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 70
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 15
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -910,7 +910,7 @@ MonoBehaviour:
   - {fileID: 1816219790}
   - {fileID: 875381994}
   segmentResolution: 50
-  showPath: 0
+  showPath: 1
 --- !u!120 &1504108710
 LineRenderer:
   serializedVersion: 2
@@ -1418,6 +1418,8 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 2101439608996535929, guid: 18d8dabceddbe4045a009609f26edc3c, type: 3}
   - {fileID: 2101439608996535929, guid: e04bee1818fd7c04cbc47705cfe747f1, type: 3}
+  - {fileID: 2101439608996535929, guid: a3710aa2fd48a9b47a202482dbdc8e8d, type: 3}
+  - {fileID: 2101439608996535929, guid: 6c369a5be046826428be74771432ac1d, type: 3}
   waypointsList:
   - {fileID: 1487310098}
   - {fileID: 1170817074}

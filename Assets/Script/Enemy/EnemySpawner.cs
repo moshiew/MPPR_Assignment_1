@@ -7,93 +7,112 @@ using UnityEngine.EventSystems;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy")]
-    [SerializeField] private GameObject[] enemyPrefabs; // All enemy prefab
+    [SerializeField] private GameObject[] enemyPrefabs; // Array of enemy prefabs to spawn from.
 
     [Header("Enemy Spawn")]
-    [SerializeField] public List<Transform> waypointsList;  // List of waypoints for the enemy to follow
-    private float elapsedTime;
-    [SerializeField] private float enemyPerSecond = 2f; // Time between enemy spawn
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField] public List<Transform> waypointsList; // List of waypoints that the enemies will follow.
+    private float elapsedTime; // Tracks time passed since the last enemy spawn.
+    [SerializeField] private float enemyPerSecond = 2f; // Time interval between spawns (1/enemyPerSecond = spawn rate).
+    [SerializeField] private Transform spawnPoint; // Location where enemies will be spawned.
 
     [Header("Wave Control")]
-    private int waveCount = 1;
-    [SerializeField] private float timeBetweenWaves = 5f;
-    private bool isSpawning = false;
-    private float enemiesAlive;
-    private int enemiesLeftToSpawn;
+    private int waveCount = 1; // Tracks the current wave number.
+    [SerializeField] private float timeBetweenWaves = 5f; // Delay before starting the next wave.
+    private bool isSpawning = false; // Indicates whether enemies are currently spawning.
+    private float enemiesAlive; // Tracks the number of enemies currently alive.
+    private int enemiesLeftToSpawn; // Tracks the remaining enemies to spawn in the current wave.
 
     [Header("Difficulty Scalar")]
-    [SerializeField] private int baseEnemies = 5;
-    [SerializeField] private float difficultyScalingFactor = 0.75f;
+    [SerializeField] private int baseEnemies = 5; // Base number of enemies in the first wave.
+    [SerializeField] private float difficultyScalingFactor = 0.75f; // Determines the exponential scaling of enemies per wave.
 
     [Header("Events")]
-    public static UnityEvent onEnemyDestroyed = new UnityEvent();
+    public static UnityEvent onEnemyDestroyed = new UnityEvent(); // Event triggered when an enemy is destroyed.
 
     private void Awake()
     {
+        // Subscribe to the onEnemyDestroyed event to decrement the enemiesAlive counter.
         onEnemyDestroyed.AddListener(EnemyDestroyed);
     }
 
     private void Start()
     {
+        // Start the first wave after initialization.
         StartCoroutine(StartWave());
     }
 
     private void Update()
     {
-        if (!isSpawning) return; // Check if the wave have started
+        // If not currently spawning enemies, exit early.
+        if (!isSpawning) return;
 
+        // Increment elapsed time by the time since the last frame.
         elapsedTime += Time.deltaTime;
 
-        if((elapsedTime >= enemyPerSecond) && enemiesLeftToSpawn > 0)
+        // Spawn an enemy if enough time has passed and there are remaining enemies to spawn.
+        if (elapsedTime >= enemyPerSecond && enemiesLeftToSpawn > 0)
         {
             SpawnEnemy();
-            enemiesLeftToSpawn--;
-            enemiesAlive++;
-            elapsedTime = 0;
+            enemiesLeftToSpawn--; // Decrease the remaining enemies to spawn.
+            enemiesAlive++; // Increase the count of enemies currently alive.
+            elapsedTime = 0; // Reset the elapsed time counter.
         }
 
-        if(enemiesAlive == 0 && enemiesLeftToSpawn == 0)
+        // Check if the wave has ended (no enemies alive and none left to spawn).
+        if (enemiesAlive == 0 && enemiesLeftToSpawn == 0)
         {
             EndWave();
         }
     }
 
     /// <summary>
-    /// Start to call the first wave
+    /// Starts a new wave of enemies after a delay.
     /// </summary>
     private IEnumerator StartWave()
     {
-        yield return new WaitForSeconds(timeBetweenWaves);
-        isSpawning = true;
-        enemiesLeftToSpawn = EnemiesPerWave();
-    }
-
-    private void EndWave()
-    {
-        isSpawning = false;
-        elapsedTime = 0;
-        waveCount += 1;
-        StartCoroutine(StartWave());
+        yield return new WaitForSeconds(timeBetweenWaves); // Wait for the wave delay.
+        isSpawning = true; // Start spawning enemies.
+        enemiesLeftToSpawn = EnemiesPerWave(); // Calculate the number of enemies for this wave.
     }
 
     /// <summary>
-    /// Calculate how much enemy to spawn next wave
+    /// Ends the current wave and prepares for the next wave.
     /// </summary>
-    /// <returns>The number of how much enemy to be spawn next wave</returns>
+    private void EndWave()
+    {
+        isSpawning = false; // Stop spawning enemies.
+        elapsedTime = 0; // Reset the elapsed time counter.
+        waveCount += 1; // Increment the wave count.
+        StartCoroutine(StartWave()); // Start the next wave.
+    }
+
+    /// <summary>
+    /// Calculates the number of enemies to spawn for the current wave.
+    /// The number scales exponentially based on the wave count and a difficulty factor.
+    /// </summary>
+    /// <returns>The number of enemies to spawn in the current wave.</returns>
     private int EnemiesPerWave()
     {
         return Mathf.RoundToInt(baseEnemies * Mathf.Pow(waveCount, difficultyScalingFactor));
     }
 
+    /// <summary>
+    /// Spawns a random enemy at the designated spawn point.
+    /// </summary>
     private void SpawnEnemy()
     {
+        // Choose a random enemy prefab from the list.
         GameObject prefabToInstantiate = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        // Instantiate the enemy prefab at the spawn point with no rotation.
         Instantiate(prefabToInstantiate, spawnPoint.position, Quaternion.identity);
     }
 
+    /// <summary>
+    /// Decrements the count of alive enemies.
+    /// This is triggered when the onEnemyDestroyed event is raised.
+    /// </summary>
     private void EnemyDestroyed()
     {
-        enemiesAlive--;
+        enemiesAlive--; // Decrease the count of alive enemies.
     }
 }

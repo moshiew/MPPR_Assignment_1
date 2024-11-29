@@ -6,31 +6,33 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private EnemyHealthBar healthBar;
 
-    public int maxHealth = 30;
-    public int currentHealth;
+    public int maxHealth = 30; // Health value for the enemy.
+    public int currentHealth; // Current health value of the enemy.
 
     private void Start()
     {
         healthBar = GetComponentInChildren<EnemyHealthBar>();
+
+        // Set the current health to maximum at the start.
         currentHealth = maxHealth;
+
+        // Initialize the health bar with the maximum health value.
         healthBar.setMaxHealth(currentHealth);
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)) 
-        {
-            currentHealth -= 5;
-            healthBar.setHealth(currentHealth);
-        }
         HealthCheck();
     }
 
+    /// <summary>
+    /// Checks if the enemy's health is zero and destroys the enemy object if true.
+    /// </summary>
     private void HealthCheck()
     {
-        if(currentHealth == 0)
+        if (currentHealth <= 0)
         {
-            Destroy(transform.root.gameObject);
+            Destroy(transform.root.gameObject); // Destroy the root object of the enemy.
         }
     }
 }

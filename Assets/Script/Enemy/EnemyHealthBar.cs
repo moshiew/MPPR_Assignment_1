@@ -10,8 +10,8 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] private Gradient gradient;
 
     private Camera cam;
-    private Transform enemy;
-    [SerializeField] private Vector3 offset;
+    private Transform enemy; // Reference to the enemy this health bar is attached to.
+    [SerializeField] private Vector3 offset; // Offset to position the health bar above the enemy.
 
     private void Start()
     {
@@ -23,30 +23,34 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void Update()
     {
-        // Making sure that the healthbar will always point at camera and will not spin around according the enemy rotation
-        transform.rotation = cam.transform.rotation;
-        transform.position = enemy.position + offset;
+        // Ensure the health bar always faces the camera and stays above the enemy.
+        transform.rotation = cam.transform.rotation; // Align health bar's rotation with the camera.
+        transform.position = enemy.position + offset; // Position health bar above the enemy with the specified offset.
     }
 
     /// <summary>
-    /// Initializing the enemy health and update the gradient colour
+    /// Initializes the enemy's maximum health and sets the health bar accordingly.
+    /// Also updates the fill color to represent full health.
     /// </summary>
-    /// <param name="health">Health of the enemy</param>
+    /// <param name="health">The maximum health of the enemy.</param>
     public void setMaxHealth(int health)
     {
-        slider.value = health;
-        slider.maxValue = health;
+        slider.value = health; // Set the current health value.
+        slider.maxValue = health; // Set the maximum health value.
 
+        // Set the fill color to the gradient's full health color (1f).
         fill.color = gradient.Evaluate(1f);
     }
 
     /// <summary>
-    /// Updating the enemy health and also update the gradient colour
+    /// Updates the enemy's current health and adjusts the health bar fill and color.
     /// </summary>
-    /// <param name="health">Health of the enemy</param>
-    public void setHealth (int health)
+    /// <param name="health">The current health of the enemy.</param>
+    public void setHealth(int health)
     {
-        slider.value = health;
+        slider.value = health; // Update the slider's value to reflect the current health.
+
+        // Update the fill color based on the normalized health value (0 to 1).
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 }
