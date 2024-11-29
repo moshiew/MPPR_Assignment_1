@@ -51,9 +51,10 @@ public class BulletMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If there is a position set for the bullet then the bullet will shoot based on the easetype of the bullet
-        if (elaspedTime < duration && positionB != null)
+        //If there is a position set for the bullet then the bullet will shoot based on the ease type of the bullet
+        if (elaspedTime < duration && positionB != null && currentenemy!= null)
         {
+            positionB = currentenemy.transform.position;
             elaspedTime += Time.deltaTime;
             float t = elaspedTime / duration;
             t = Mathf.Clamp01(t);
@@ -92,6 +93,7 @@ public class BulletMovementScript : MonoBehaviour
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(dmgPoints); // Deal damage to the correct enemy
+                   
                 }
             }
 
