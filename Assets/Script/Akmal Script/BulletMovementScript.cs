@@ -18,6 +18,7 @@ public class EasingMovement : MonoBehaviour
 
     public GameObject currentenemy;
     public TowerShootScript towerShootScript;
+    public int dmgPoints;
 
     // Start is called before the first frame update
 
@@ -47,8 +48,6 @@ public class EasingMovement : MonoBehaviour
         }
         else
         {
-            
-
             Destroy(gameObject); // No target enemy; destroy the bullet
         }
 
@@ -96,7 +95,7 @@ public class EasingMovement : MonoBehaviour
                 TempEnemy tempEnemy = currentenemy.GetComponent<TempEnemy>();
                 if (tempEnemy != null)
                 {
-                    tempEnemy.TakeDamage(10); // Deal damage to the correct enemy
+                    tempEnemy.TakeDamage(dmgPoints); // Deal damage to the correct enemy
                    
                 }
             }

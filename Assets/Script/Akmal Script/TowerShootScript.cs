@@ -41,6 +41,7 @@ public class TowerShootScript : MonoBehaviour
                 enemyPosition = enemy.transform;
 
                 // Instantiate the bullet
+
                 GameObject bullet = Instantiate(towerBulletPrefab, towerPosition.position, towerPosition.rotation);
 
                 // Pass the current enemy reference to the bullet's EasingMovement script
