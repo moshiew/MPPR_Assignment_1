@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/Black.mat.meta
+guid: c4782fa0b4f34944da8b06beb08acf65
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+========
+guid: 204ae77320b536d459d12c2126255a73
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+>>>>>>>> KaiXiang:Assets/Materials/Audio/Mixer.mixer.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
