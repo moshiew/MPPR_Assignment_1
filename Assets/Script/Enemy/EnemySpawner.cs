@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform spawnPoint; // Location where enemies will be spawned.
 
     [Header("Wave Control")]
-    private int waveCount = 1; // Tracks the current wave number.
+    private int waveCount = 1;
     [SerializeField] private float timeBetweenWaves = 5f; // Delay before starting the next wave.
     private bool isSpawning = false; // Indicates whether enemies are currently spawning.
     private float enemiesAlive; // Tracks the number of enemies currently alive.
@@ -88,12 +88,11 @@ public class EnemySpawner : MonoBehaviour
 
     /// <summary>
     /// Calculates the number of enemies to spawn for the current wave.
-    /// The number scales exponentially based on the wave count and a difficulty factor.
     /// </summary>
     /// <returns>The number of enemies to spawn in the current wave.</returns>
     private int EnemiesPerWave()
     {
-        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(waveCount, difficultyScalingFactor));
+        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(waveCount, difficultyScalingFactor)); // The number scales exponentially based on the wave count and a difficulty factor.
     }
 
     /// <summary>
@@ -109,7 +108,6 @@ public class EnemySpawner : MonoBehaviour
 
     /// <summary>
     /// Decrements the count of alive enemies.
-    /// This is triggered when the onEnemyDestroyed event is raised.
     /// </summary>
     private void EnemyDestroyed()
     {

@@ -6,9 +6,6 @@ public class BezierCurve
 {
     /// <summary>
     /// Calculates a smooth control point for a quadratic Bezier curve.
-    /// This is determined based on the previous waypoint, the current waypoint (p0),
-    /// and the next waypoint (p2). The method ensures the control point is positioned 
-    /// in the middle of the segment between p0 and p2 and aligned with their direction.
     /// </summary>
     /// <param name="previousPoint">The previous point in the curve.</param>
     /// <param name="p0">The current point in the curve.</param>
@@ -27,8 +24,6 @@ public class BezierCurve
 
     /// <summary>
     /// Calculates a point on a quadratic Bezier curve given a progress value t.
-    /// The curve is defined by three points: the start point (p0), the control point (p1),
-    /// and the end point (p2).
     /// </summary>
     /// <param name="t">The progress along the curve (0 to 1).</param>
     /// <param name="p0">The start point of the curve.</param>
@@ -45,7 +40,6 @@ public class BezierCurve
 
     /// <summary>
     /// Applies an Ease-In easing function, where progress starts slow and accelerates.
-    /// The easing function follows a quadratic curve (t^2).
     /// </summary>
     /// <param name="t">The input progress value (0 to 1).</param>
     /// <returns>The eased progress value.</returns>
@@ -56,7 +50,6 @@ public class BezierCurve
 
     /// <summary>
     /// Applies an Ease-Out easing function, where progress starts fast and decelerates.
-    /// The easing function follows a quadratic curve (1 - (1 - t)^2).
     /// </summary>
     /// <param name="t">The input progress value (0 to 1).</param>
     /// <returns>The eased progress value.</returns>
@@ -68,7 +61,6 @@ public class BezierCurve
     /// <summary>
     /// Applies an Ease-In-Out easing function, where progress starts slow, 
     /// accelerates in the middle, and decelerates at the end.
-    /// The easing function transitions smoothly between Ease-In and Ease-Out.
     /// </summary>
     /// <param name="t">The input progress value (0 to 1).</param>
     /// <returns>The eased progress value.</returns>

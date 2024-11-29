@@ -113,6 +113,6 @@ public class EnemyMovement : MonoBehaviour
             previousPoint = currentPoint; // Update the previous point.
         }
 
-        return pathLength; // Return the total estimated length.
+        return pathLength;
     }
 }
