@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: 9c77249def9757f4bb293bdd028e0740
+<<<<<<<< HEAD:Assets/Materials/Blue.mat.meta
+guid: 3c642b0bb09cc9b40bae7fce110f1e0c
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
+========
+guid: 3199409928624324999b9336dd1ed8f3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+>>>>>>>> KaiXiang:Assets/Materials/UI/Fonts/LATO-BOLD SDF.asset.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
