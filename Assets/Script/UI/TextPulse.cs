@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class TextPulse : MonoBehaviour
 {
-    public TextMeshProUGUI[] text;
-    public RawImage[] images;
+    public TextMeshProUGUI healthtext;
+    public TextMeshProUGUI waveText;
     public float pulseSpeed = 2f;
     public float minScale = 0.85f;
     public float maxScale = 1.0f;
@@ -18,28 +18,22 @@ public class TextPulse : MonoBehaviour
     {
         //Calculates current interpolation value using PingPong which oscillates between 0 and 1
         t = Mathf.PingPong(Time.time * pulseSpeed, 1);
-        
+
         //Calculate the scale based on interpolation value
         float scale = minScale + (maxScale - minScale) * t;
 
-        //Apply scale to each text in array
-        foreach (var t in text)
+        //Apply pulse effect to healthText
+        if (healthtext != null)
         {
-            if(t != null)
-            {
-                //Update scale of RectTransform
-                t.rectTransform.localScale = new Vector3(scale, scale, scale);
-            }
+            //Update scale of RectTransform
+            healthtext.rectTransform.localScale = new Vector3(scale, scale, scale);
         }
 
-        //Apply scale to each image in array
-        foreach (var img in images)
+        //Apply pulse effect to healthText
+        if (waveText != null)
         {
-            if (img != null)
-            {
-                //Update scale of RectTransform
-                img.rectTransform.localScale = new Vector3(scale, scale, scale);
-            }
+            //Update scale of RectTransform
+            waveText.rectTransform.localScale = new Vector3(scale, scale, scale);
         }
     }
 }
