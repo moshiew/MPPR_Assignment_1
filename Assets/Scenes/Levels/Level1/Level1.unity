@@ -354,12 +354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8523d2def9b3254aa1bb0ce455fda7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 1579414157}
   playerHealth: 100
-  text:
-  - {fileID: 463733716}
-  - {fileID: 1658802651}
-  images:
-  - {fileID: 1446080618}
+  healthtext: {fileID: 463733716}
+  waveText: {fileID: 1658802651}
   pulseSpeed: 2
   minScale: 0.95
   maxScale: 1
@@ -1975,7 +1973,7 @@ MonoBehaviour:
   - {fileID: 1816219790}
   - {fileID: 875381994}
   segmentResolution: 50
-  showPath: 1
+  showPath: 0
 --- !u!120 &1504108710
 LineRenderer:
   serializedVersion: 2
@@ -2495,6 +2493,7 @@ MonoBehaviour:
   - {fileID: 875381994}
   enemyPerSecond: 2
   spawnPoint: {fileID: 1579414156}
+  waveCount: 1
   timeBetweenWaves: 5
   baseEnemies: 5
   difficultyScalingFactor: 0.75

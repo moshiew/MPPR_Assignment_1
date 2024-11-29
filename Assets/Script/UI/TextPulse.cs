@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class TextPulse : MonoBehaviour
 {
+    [SerializeField] private EnemySpawner spawner;
     public int playerHealth = 100;
     public TextMeshProUGUI healthtext;
     public TextMeshProUGUI waveText;
@@ -38,7 +39,7 @@ public class TextPulse : MonoBehaviour
             //Update scale of RectTransform
             waveText.rectTransform.localScale = new Vector3(scale, scale, scale);
 
-            //waveText.text = waveNumber.ToString();
+            waveText.text = "Wave: " + spawner.waveCount.ToString();
         }
     }
 }

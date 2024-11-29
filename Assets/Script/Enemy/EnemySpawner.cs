@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform spawnPoint; // Location where enemies will be spawned.
 
     [Header("Wave Control")]
-    private int waveCount = 1;
+    public int waveCount = 1;
     [SerializeField] private float timeBetweenWaves = 5f; // Delay before starting the next wave.
     private bool isSpawning = false; // Indicates whether enemies are currently spawning.
     private float enemiesAlive; // Tracks the number of enemies currently alive.

@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c77249def9757f4bb293bdd028e0740, type: 2}
+  - {fileID: 2100000, guid: 3c642b0bb09cc9b40bae7fce110f1e0c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
-  duration: 0.25
+  duration: 1
   easeType: 2
   currentenemy: {fileID: 0}
   towerShootScript: {fileID: 0}
