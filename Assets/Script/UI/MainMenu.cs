@@ -7,7 +7,6 @@ public class MainMenu : MonoBehaviour
 {
     public Transform[] menuPanels;
     public float transitionDuration = 0.5f;
-    float time = 0f;
     public BezierCurve bezierCurve;
 
     public void GameScene()
@@ -57,6 +56,9 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator TogglePanel(int panelIndex)
     {
+        // Reset time
+        float time = 0f;
+
         //Close Panel
         foreach (var panel in menuPanels)
         {
