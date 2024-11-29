@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     private int waypointsTracker = 0;                        // Index to track the current waypoint
 
     [Header("Enemy")]
-    private float enemySpd = 10f;                            // Enemy movement speed
+    private float enemySpd = 2f;                            // Enemy movement speed
 
     [Header("Lerp")]
     private float tParam = 0;                                // Interpolation parameter (ranges from 0 to 1)
@@ -55,6 +55,10 @@ public class EnemyMovement : MonoBehaviour
             while (tParam < 1f)
             {
                 tParam = elapsedTime / totalTime; // Update interpolation parameter
+                if (transform.name.Contains("EaseInMinion"))
+                {
+                    tParam = bezierCurve.EaseIn(tParam);
+                }
 
                 // Update the enemy's position based on the Bezier curve
                 transform.position = bezierCurve.CalculateBezierPoint(tParam, p0, p1, p2);
@@ -62,12 +66,14 @@ public class EnemyMovement : MonoBehaviour
                 elapsedTime += Time.deltaTime; // Increment elapsed time
                 yield return null;
             }
+            
 
             waypointsTracker++; // Move to the next waypoint
 
             // Check if the enemy has reached the final waypoint
             if (Vector3.Distance(transform.position, enemySpawner.waypointsList[enemySpawner.waypointsList.Count - 1].position) < 0.5f)
             {
+                EnemySpawner.onEnemyDestroyed.Invoke();
                 Destroy(gameObject); // Destroy the enemy object
                 break;
             }

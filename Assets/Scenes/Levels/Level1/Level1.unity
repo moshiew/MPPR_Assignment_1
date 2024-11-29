@@ -1417,6 +1417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 2101439608996535929, guid: 18d8dabceddbe4045a009609f26edc3c, type: 3}
+  - {fileID: 2101439608996535929, guid: e04bee1818fd7c04cbc47705cfe747f1, type: 3}
   waypointsList:
   - {fileID: 1487310098}
   - {fileID: 1170817074}
@@ -1425,8 +1426,11 @@ MonoBehaviour:
   - {fileID: 1741637554}
   - {fileID: 1816219790}
   - {fileID: 875381994}
+  enemyPerSecond: 2
   spawnPoint: {fileID: 1579414156}
-  enemyMovement: {fileID: 0}
+  timeBetweenWaves: 5
+  baseEnemies: 5
+  difficultyScalingFactor: 0.75
 --- !u!4 &1659274404 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6827621745662545929, guid: 566b98ea535e91a44b557dba92ecd85c, type: 3}

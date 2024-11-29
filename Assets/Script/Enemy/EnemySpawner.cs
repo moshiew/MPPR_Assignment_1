@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -10,24 +12,31 @@ public class EnemySpawner : MonoBehaviour
     [Header("Enemy Spawn")]
     [SerializeField] public List<Transform> waypointsList;  // List of waypoints for the enemy to follow
     private float elapsedTime;
-    private float enemyPerSecond = 2f; // Time between enemy spawn
+    [SerializeField] private float enemyPerSecond = 2f; // Time between enemy spawn
     [SerializeField] private Transform spawnPoint;
 
     [Header("Wave Control")]
     private int waveCount = 1;
-    private float timeBetweenWaves = 5f;
+    [SerializeField] private float timeBetweenWaves = 5f;
     private bool isSpawning = false;
     private float enemiesAlive;
     private int enemiesLeftToSpawn;
 
     [Header("Difficulty Scalar")]
-    private int baseEnemies = 5;
-    private float difficultyScalingFactor = 0.75f;
+    [SerializeField] private int baseEnemies = 5;
+    [SerializeField] private float difficultyScalingFactor = 0.75f;
 
+    [Header("Events")]
+    public static UnityEvent onEnemyDestroyed = new UnityEvent();
+
+    private void Awake()
+    {
+        onEnemyDestroyed.AddListener(EnemyDestroyed);
+    }
 
     private void Start()
     {
-        StartWave();
+        StartCoroutine(StartWave());
     }
 
     private void Update()
@@ -43,15 +52,29 @@ public class EnemySpawner : MonoBehaviour
             enemiesAlive++;
             elapsedTime = 0;
         }
+
+        if(enemiesAlive == 0 && enemiesLeftToSpawn == 0)
+        {
+            EndWave();
+        }
     }
 
     /// <summary>
     /// Start to call the first wave
     /// </summary>
-    private void StartWave()
+    private IEnumerator StartWave()
     {
+        yield return new WaitForSeconds(timeBetweenWaves);
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
+    }
+
+    private void EndWave()
+    {
+        isSpawning = false;
+        elapsedTime = 0;
+        waveCount += 1;
+        StartCoroutine(StartWave());
     }
 
     /// <summary>
@@ -65,7 +88,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        GameObject prefabToInstantiate = enemyPrefabs[0];
+        GameObject prefabToInstantiate = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
         Instantiate(prefabToInstantiate, spawnPoint.position, Quaternion.identity);
+    }
+
+    private void EnemyDestroyed()
+    {
+        enemiesAlive--;
     }
 }

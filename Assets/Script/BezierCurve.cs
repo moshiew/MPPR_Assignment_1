@@ -27,4 +27,9 @@ public class BezierCurve
         float u = 1 - t;
         return (u * u * p0) + (2 * u * t * p1) + (t * t * p2);
     }
+
+    public float EaseIn(float t)
+    {
+        return t * t;  // t^2
+    }
 }
