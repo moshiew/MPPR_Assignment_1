@@ -17,11 +17,13 @@ public class EnemyMovement : MonoBehaviour
     private BezierCurve bezierCurve = new BezierCurve();
     private EnemyPathwayRenderer enemyPathwayRenderer;
     private EnemySpawner enemySpawner;
+    private TextPulse textPulse;
 
     private void Start()
     {
         enemyPathwayRenderer = GameObject.Find("QuadraticBezierPoints").GetComponent<EnemyPathwayRenderer>();
         enemySpawner = GameObject.Find("EnemySpawnPoint").GetComponent<EnemySpawner>();
+        textPulse = GameObject.Find("Canvas").GetComponentInChildren<TextPulse>();
 
         // Perform a check to see if there is more than 1 waypoints in waypointsList
         if (enemySpawner.waypointsList != null && enemySpawner.waypointsList.Count >= 2)
@@ -83,9 +85,7 @@ public class EnemyMovement : MonoBehaviour
             // Check if the enemy has reached the final waypoint.
             if (Vector3.Distance(transform.position, enemySpawner.waypointsList[enemySpawner.waypointsList.Count - 1].position) < 0.5f)
             {
-                // Notify the spawner that the enemy is destroyed and remove it from the scene.
-                EnemySpawner.onEnemyDestroyed.Invoke();
-                Destroy(gameObject);
+                EnemyReachedBase();
                 break;
             }
         }
@@ -114,5 +114,16 @@ public class EnemyMovement : MonoBehaviour
         }
 
         return pathLength;
+    }
+
+    /// <summary>
+    /// Function to be performed after the enemy reached the player's base
+    /// </summary>
+    public void EnemyReachedBase()
+    {
+        // Notify the spawner that the enemy is destroyed and remove it from the scene.
+        EnemySpawner.onEnemyDestroyed.Invoke();
+        Destroy(gameObject);
+        textPulse.playerHealth -= 10;
     }
 }

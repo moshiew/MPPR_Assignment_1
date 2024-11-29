@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class TextPulse : MonoBehaviour
 {
+    public int playerHealth = 100;
     public TextMeshProUGUI[] text;
     public RawImage[] images;
     public float pulseSpeed = 2f;
@@ -29,6 +30,8 @@ public class TextPulse : MonoBehaviour
             {
                 //Update scale of RectTransform
                 t.rectTransform.localScale = new Vector3(scale, scale, scale);
+
+                t.text = playerHealth.ToString();
             }
         }
 
